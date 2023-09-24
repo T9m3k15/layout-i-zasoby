@@ -1,0 +1,59 @@
+﻿<Window x:Class="AppMainWindow.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Main Window" Height="400" Width="600">
+    <Window.Resources>
+        <!-- Styl dla Label - pogrubiony tekst, font size na 24 -->
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+
+        <!-- Specjalny styl dla jednej Label - zmiana koloru tekstu -->
+        <Style x:Key="SpecialLabelStyle" BasedOn="{StaticResource LabelStyle}" TargetType="Label">
+            <Setter Property="Foreground" Value="#900"/>
+        </Style>
+
+        <!-- Styl dla Button - standardowe tło zmienione na inny odcień, font size na 20 -->
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#EEE"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+
+        <!-- Drugi styl dla Button - font size na 20 i modyfikacja kolorów -->
+        <Style x:Key="CustomButtonStyle" TargetType="Button">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Background" Value="#DDF"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#99D"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="BorderBrush" Value="White"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#99F"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <!-- WrapPanel na górze okna z przyciskami -->
+        <WrapPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10">
+            <Button x:Name="Przycisk1" Content="Przycisk 1" Style="{StaticResource CustomButtonStyle}" Click="Przycisk1_Click"/>
+            <Button x:Name="Przycisk2" Content="Przycisk 2" Style="{StaticResource CustomButtonStyle}" Click="Przycisk2_Click"/>
+            <Button x:Name="Przycisk3" Content="Przycisk 3" Style="{StaticResource CustomButtonStyle}" Click="Przycisk3_Click"/>
+        </WrapPanel>
+
+
+        <!-- StackPanel po lewej stronie okna z etykietami -->
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">
+            <Label Content="Grupa 1" Style="{StaticResource LabelStyle}"/>
+            <Label Content="Grupa 2" Style="{StaticResource SpecialLabelStyle}"/>
+        </StackPanel>
+
+        <!-- Specjalna etykieta korzystająca ze stylu SpecialLabelStyle -->
+        <Label Content="" Style="{StaticResource SpecialLabelStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Grid>
+</Window>
